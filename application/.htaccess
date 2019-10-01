@@ -1,0 +1,3 @@
+# This directory must not be browseable
+Order deny,allow
+Deny from all
