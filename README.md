@@ -1,10 +1,10 @@
-# LightRail
+# LightRailMVC
 
 a lightweight web application framework for PHP
 
 #### Sections
 
-- [What is LightRail and why use it?](#what-is-lightrail-and-why-use-it)
+- [What is LightRailMVC and why use it?](#what-is-lightrailmvc-and-why-use-it)
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -12,17 +12,17 @@ a lightweight web application framework for PHP
 - [Model View Controller (MVC)](#model-view-controller-mvc)
 - [Getting application URLs to work](#getting-application-urls-to-work)
 - [Custom URL routing](#custom-url-routing)
-- [Extending LightRail](#extending-lightrail)
+- [Extending LightRailMVC](#extending-lightrailmvc)
 
-## What is LightRail and why use it?
+## What is LightRailMVC and why use it?
 
-LightRail is an extremely **light** web application framework for PHP which layers data, presentation and logic using the model/view/controller pattern (MVC) popularized by Ruby on **Rails**.
+LightRailMVC is an extremely **light** web application framework for PHP which layers data, presentation and logic using the model/view/controller pattern (MVC) popularized by Ruby on **Rails**.
 
 It was influenced by a bare-bones framework design by Chris Panique.
 
-### Why use LightRail?
+### Why use LightRailMVC?
 
-LightRail is:
+LightRailMVC is:
 
 - blazing fast
 - simple
@@ -30,35 +30,35 @@ LightRail is:
 - open source
 - environment-friendly ;-)
 
-There are many frameworks for PHP which employ MVC or a similar pattern, and they all have a much larger featureset than LightRail. It may very well be that you are better served by using one of them. Shop and see. But unfortunately, when frameworks are built to be comprehensive they also turn into a 10 pound Swiss army knife - feature-rich but cumbersome.
+There are many frameworks for PHP which employ the MVC pattern, and they all have a much larger featureset than LightRailMVC. It may very well be that you are better served by using one of them. But unfortunately, most feature-heavy frameworks turn into a 10 pound Swiss army knife that has many tools but slows you down.
 
-LightRail takes the opposite approach. It just handles incoming requests and organizes your application codebase. Then it lets PHP, which is itself a web application language, handle the rest. This is what makes it so light.
+LightRailMVC takes the opposite approach. It just handles incoming requests and organizes your application codebase. Then it lets PHP, which is itself a web application language, handle the rest. This is what makes it so light.
 
 #### Fast
 
-Accordingly, you will notice that LightRail is significantly faster than other PHP frameworks. Which is nice, because good performance translates into being able to handle more site traffic volume.
+Accordingly, you will notice that LightRailMVC is significantly faster than other PHP frameworks. Which is nice, because good performance translates into being able to handle more site traffic volume.
 
 #### Simple
 
 Another benefit of using a minimal framework is that there is minimal learning time needed before you can start working with it. PHP is designed to handle most web programming tasks on its own, and good third-party libraries already exist for common needs. Why re-invent the wheel?
 
-When you examine some of the more expansive frameworks you can actually find methods in classes with multiple levels of inheritance, whose only job is to call a pre-existing PHP function! This might impress dogmatic OOP purists but it certainly doesn't impress your server. And when your server slows down, it doesn't impress your users.
+When you examine the more expansive frameworks you actually find methods in classes with multiple levels of inheritance, whose only job is to call a pre-existing PHP function! This might impress dogmatic OOP purists but it certainly doesn't impress your server. And when your server slows down, it doesn't impress your users.
 
 #### Flexible
 
-LightRail does not presume that you lack ideas of your own, nor does it force you down a rigid coding path. It is ammenable to your own coding decisions.
+LightRailMVC does not presume that you lack ideas of your own, nor does it force you down a rigid coding path. It is ammenable to your own coding decisions.
 
 #### Open Source
 
-LightRail is open source. You can easily modify it to suit your own needs and there is no malware hiding in it.
+LightRailMVC is open source. You can easily modify it to suit your own needs and there is no malware hiding in it.
 
 #### Environment-Friendly
 
-This point was mostly tongue in cheek, but not entirely. Hardware consumes power and creates disposal issues at the end of its life cycle. By getting more out of your hardware you reduce carbon emissions, toxic waste and operating costs.
+This point was mostly tongue in cheek, but not entirely. Hardware consumes power and creates disposal issues at the end of its life cycle. By running efficient code you get more out of your hardware and consume less power, which in turn reduces carbon emissions, toxic waste and operating costs.
 
 ## Features
 
-LightRail's features include:
+LightRailMVC's features include:
 
 - Standardized application code organization
 - Meaningful URLs (a.k.a. "pretty urls")
@@ -68,17 +68,17 @@ LightRail's features include:
 
 PHP version 5 or higher
 
-While the documentation is Apache-centred, LightRail will work in other PHP environments.
+While the documentation is Apache-centred, LightRailMVC will work in other PHP environments.
 
 ## Installation
 
-You can download or clone the LightRail project from [GitHub](https://github.com/trentreimer/LightRail) and place the contents into the server directory you wish to use.
+You can download or clone the LightRailMVC project from [GitHub](https://github.com/trentreimer/LightRailMVC) and place the contents into the server directory you wish to use.
 
 Let's take a look at the contents.
 
 #### The site router: 'index.php'
 
-The file `index.php` is the site router. It handles all incoming requests.
+The file `index.php` is the site router. It receives all incoming requests. It doesn't contain much code though. Instead it includes 'application/bootstrap.php' which is where any custom routing or other configuration is set.
 
 #### The directories
 
@@ -89,11 +89,11 @@ The included directories are:
 
 #### The application directory
 
-`application/` contains the files for the application: the models, views, controllers, etc. as well as the LightRail class definition itself. ( `LightRail.php` ) The `application/` directory should not be viewable from the web since none of the files within it are meant to handle direct requests.
+`application/` contains the files for the application: the models, views, controllers, etc. as well as the bootstrap file and the LightRailMVC class definition itself. ( `LightRailMVC.php` ) The `application/` directory should not be viewable from the web since none of the files within it are meant to handle direct requests.
 
 > The included `.htaccess` file will instruct most Apache servers not to serve content from the `application/` directory. But it is wise to test for access denial by trying to browse to it. If your server does not support .htaccess configuration you will need to secure the directory using the correct procedure for your server.
 
-> Another option, perhaps preferrable, is to place the `application/` directory in a location outside the server's web viewable directory tree and edit the router file (`index.php`) to require `application/LightRail.php` from its new location.
+> Another option, perhaps preferrable, is to place the `application/` directory in a location outside the server's web viewable directory tree and edit the router file (`index.php`) to require `application/bootstrap.php` from its new location.
 
 The principle subdirectories of the application directory are:
 
@@ -107,17 +107,15 @@ The principle subdirectories of the application directory are:
 
 ## Configuration
 
-Configuration directives for your web application can be set in `application/app-config.php` . Feel free to add any configuration options you like.
-
-If you use the built in database handler you will need to put your database connection details in this file as `$conf['pdo_args']` . You will find database configuration instructions in the file.
+Configuration directives for your web application can be set in `application/site-config.php` . Feel free to add any configuration options you like.
 
 ## Model View Controller (MVC)
 
-LightRail employs a model, view, controller pattern (MVC) similar to Ruby on Rails and many other frameworks. MVC is a form of layered or tiered application development. By separating development into layers, applications become more manageable, especially as they expand over time.
+LightRailMVC employs a model, view, controller pattern (MVC) similar to Ruby on Rails and many other frameworks. MVC is a form of layered or tiered application development. By separating development into layers, applications become more manageable, especially as they expand over time.
 
 #### Model
 
-The model layer handles object relational mapping (ORM). ORM converts database records to programming objects and vice-versa. If you don't need to interact with a database you don't need this feature.
+The model layer handles object relational mapping (ORM). ORM converts database records to programming objects and vice-versa. You only need this feature if you want to interact with a database.
 
 #### View
 
@@ -145,9 +143,9 @@ As with most things in life, ASCII art will facilitate our understanding:
     (Database)             <- now it all makes sense!
 ```
 
-### How MVC Works in LightRail
+### How MVC Works in LightRailMVC
 
-When a URL is passed to LightRail it is processed as an application request. i.e. A URL can request a specific **action** from your application. That action is processed in the **controller**.
+When a URL is passed to LightRailMVC it is processed as an application request. i.e. A URL can request a specific **action** from your application. That action is processed in the **controller**.
 
 In your code, the controller is a **class** and the action is a **method** of that class.
 
@@ -290,7 +288,7 @@ Now we update the controller to use the view's HTML snippet within the default l
 ```
 <?php // file: application/controllers/FriendController.php
 
-class FriendController
+class FriendController extends Controller
 {
     public function indexAction()
     {
@@ -309,13 +307,13 @@ It also gives the view access to the properties and methods of the controller, w
 
 However, if such things cause one to lose sleep, it is not difficult to extend such a simple framework to render the view within its own scope and require variables to be passed to the view explicitly.
 
-LightRail lets you flesh out the details the way **you** like, with just as much code as you need, and no more.
+LightRailMVC lets you flesh out the details the way **you** like, with just as much code as you need, and no more.
 
 ## Getting application URLs to work
 
 ### The router file: `index.php`
 
-In LightRail all requests are handled by the file `index.php` in the top level directory. All application URLs need to get routed to that file.
+In LightRailMVC all requests are handled by the file `index.php` in the top level directory. All application URLs need to get routed to that file.
 
 It is important that your server treats `index.php` as the directory index. Most PHP enabled servers already do that but if yours does not you will need to set it. For Apache this can often be done with an `.htaccess` directive.
 
@@ -326,7 +324,7 @@ DirectoryIndex index.php
 
 ### URL segments
 
-When parsing the incoming URL for arguments, instead of relying entirely on query strings LightRail uses URL segments separated by '/' slashes to create more readable URLs.
+When parsing the incoming URL for arguments, instead of relying entirely on query strings LightRailMVC uses URL segments separated by '/' slashes to create more readable URLs.
 
 so instead of this:
 
@@ -338,7 +336,7 @@ you have this:
 
 In this example we have three segments: `catalog/view-details/shark-laser`
 
-In LightRail application URLs:
+In LightRailMVC application URLs:
 
 1. The first segment is used to denote which **controller** class to load.
 2. The second segment defines which **action** method of that controller to call.
@@ -367,7 +365,7 @@ class CatalogController extends Controller
 }
 ```
 
-You may also have noticed that LightRail will convert hyphens ('-') to camel case for the controller and action segments, but not to any arguments supplied to the action method.
+You may also have noticed that LightRailMVC will convert hyphens ('-') to camel case for the controller and action segments, but not to any arguments supplied to the action method.
 
 So the application URL
 
@@ -404,10 +402,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?--request=$1 [QSA,L]
 ```
 
-The router file can then read that application request as a `$_GET` value.
+The bootstrap file can then read that application request as a `$_GET` value.
 
 ```
-<?php // file: index.php
+<?php // file: bootstrap.php
 
 $request = @$_GET['--request'];
 ```
@@ -420,16 +418,16 @@ Any PHP enabled server will support arguments via query string. For example:
 
 > '--request' is an arbitrary query string key, chosen here because it is highly unlikely you would ever need to use it for anything else. But you can easily configure `.htaccess` and `index.php` to use a different key.
 
-### Passing the application URL segments to LightRail
+### Passing the application URL segments to LightRailMVC
 
-The router file needs to pass the application URL segments to `LightRail` when serving the wep application request. This is done with the static method `LightRail::serve()`
+The router file needs to pass the application URL segments to `LightRailMVC` when serving the wep application request. This is done with the static method `LightRailMVC::serve()`
 
 The application URL segments are supplied as a single argument to the `serve()` method.
 
 The following works with either URL rewriting or a direct query string:
 
 ```
-<?php // file: index.php
+<?php // file: bootstrap.php
 
 // Always set the default controller/action request for the site
 if (empty($_GET['--request'])) {
@@ -438,18 +436,18 @@ if (empty($_GET['--request'])) {
     $request = $_GET['--request'];
 }
 
-require 'application/LightRail.php';
-LightRail::serve($request);
+require __DIR__ . '/LightRailMVC.php';
+LightRailMVC::serve($request);
 ```
 
 ## Custom URL routing
 
 If you wish to use application URLs which differ from the `controller/action/arg` pattern, you can add some logic to convert actual requests to the `controller/action/arg` format.
 
-The most direct way to do that is to add rules to the router file.
+The most direct way to do that is to add rules to the bootstrap file.
 
 ```
-<?php // file: index.php
+<?php // file: bootstrap.php
 
 // Always set the default controller/action request for the site
 if (empty($_GET['--request'])) {
@@ -473,9 +471,9 @@ if ($request = 'shark-laser') {
 }
 ```
 
-## Extending LightRail
+## Extending LightRailMVC
 
-`LightRail` and its associated classes are not difficult to edit or extend for your own purposes. You are encouraged to do so.
+`LightRailMVC` and its associated classes are not difficult to edit or extend for your own purposes. You are encouraged to do so.
 
 
 @2019 Trent Reimer
